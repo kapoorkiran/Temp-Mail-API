@@ -1,5 +1,5 @@
 # temp-mail-API
-Unofficial API for temp-mail.org in .NET
+Unofficial API for [TempMail](https://temp-mail.org) in .NET
 
 It can be used to generate temporary emails, it can help in making bots or anything else.
 
