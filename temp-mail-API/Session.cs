@@ -55,7 +55,7 @@ namespace TempMail
                 if (client.StatusCode != HttpStatusCode.OK)
                     return null;
 
-                return (Email = $"{login}@{domain}");
+                return (Email = $"{login}{NormalizeDomain(domain)}");
             }
         }
 
@@ -72,9 +72,13 @@ namespace TempMail
 
         private string BuildUploadString(string csrf, string login, string domain)
         {
-            return $"csrf={csrf}&mail={login}&domain={ (domain.Contains("@") ? domain : "@" + domain) }";
+            return $"csrf={csrf}&mail={login}&domain={ NormalizeDomain(domain) }";
         }
 
+        private static string NormalizeDomain(string domain)
+        {
+            return (domain[0] == '@') ? domain : '@' + domain;
+        }
 
         /// <summary>
         /// Deletes the temporary email and gets a new one.
